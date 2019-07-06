@@ -1,15 +1,26 @@
 pipeline {
-    agent {
-        docker {
-            image 'ubuntu'
-        }
-    }
-        stages {
-            stage('One') {
-            steps {
-            echo 'hello'
-            }
-            }
-            }
-    }
+    agent any
 
+    stages {
+        stage('SCM checkout') {
+            steps {
+                git 'https://github.com/javahometech/my-app.git'
+            }
+        }
+        stage('Compile-Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....  This is the deployment phase'
+            }
+        }
+	stage('Postdeploy') {
+		steps {
+			echo 'Postdeployment phase....'
+		}
+	}
+    }
+}
