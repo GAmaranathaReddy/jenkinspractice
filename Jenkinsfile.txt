@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('SCM checkout') {
             steps {
-                echo 'Building.. This is the build phase'
+                git 'https://github.com/javahometech/my-app.git'
             }
         }
-        stage('Test') {
+        stage('Compile-Package') {
             steps {
-                echo 'Testing.. This is the testing phase'
+                sh 'mvn package'
             }
         }
         stage('Deploy') {
