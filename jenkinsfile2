@@ -9,8 +9,8 @@ pipeline {
         }
         stage('Compile-Package') {
             steps {
-	    	bat 'ls'
-                bat 'mvn package'
+	    	cmd 'ls'
+                cmd 'mvn package'
             }
         }
         stage('Deploy') {
