@@ -9,8 +9,8 @@ pipeline {
         }
         stage('Compile-Package') {
             steps {
-	    	cmd 'ls'
-                cmd 'mvn package'
+	    	sh 'ls'
+                sh 'mvn package'
             }
         }
         stage('Deploy') {
